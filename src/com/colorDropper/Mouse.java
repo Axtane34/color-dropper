@@ -34,7 +34,6 @@ public class Mouse extends JFrame {
                 int r = colors.getRed();
                 int g = colors.getGreen();
                 int b = colors.getBlue();
-                
                 String hex = String.format("#%02x%02x%02x", r, g, b);
                 System.out.println(hex);
                 StringSelection stringSelection = new StringSelection(hex);
