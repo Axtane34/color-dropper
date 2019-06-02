@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,16 +16,13 @@ public class Mouse extends JFrame {
     JFrame frame = new JFrame();
 
     public Mouse() {
-
+        frame.setUndecorated(true);
         frame.setVisible(true);
         frame.setResizable(true);
         frame.setSize(600,400);
         frame.setExtendedState(MAXIMIZED_BOTH);
         frame.setContentPane(new BgPanel());
         frame.addMouseListener(new ClickRGB());
-
-
-
     }
 
     public class ClickRGB extends MouseAdapter implements MouseListener {
@@ -38,7 +34,7 @@ public class Mouse extends JFrame {
                 int r = colors.getRed();
                 int g = colors.getGreen();
                 int b = colors.getBlue();
-
+                
                 String hex = String.format("#%02x%02x%02x", r, g, b);
                 System.out.println(hex);
                 StringSelection stringSelection = new StringSelection(hex);
@@ -65,6 +61,7 @@ public class Mouse extends JFrame {
             JLabel picLabel = new JLabel(new ImageIcon(im));
             add(picLabel);
             g.drawImage(im,0,0,this);
+
         }
     }
 }
