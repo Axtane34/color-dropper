@@ -2,6 +2,8 @@ package com.colorDropper;
 
 import java.awt.AWTException;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -23,6 +25,8 @@ public class Mouse extends JFrame {
         frame.setContentPane(new BgPanel());
         frame.addMouseListener(new ClickRGB());
 
+
+
     }
 
     public class ClickRGB extends MouseAdapter implements MouseListener {
@@ -31,12 +35,17 @@ public class Mouse extends JFrame {
             try {
                 Robot robot = new Robot();
                 Color colors = robot.getPixelColor(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
-                System.out.println(colors);
                 int r = colors.getRed();
                 int g = colors.getGreen();
                 int b = colors.getBlue();
+
                 String hex = String.format("#%02x%02x%02x", r, g, b);
                 System.out.println(hex);
+                StringSelection stringSelection = new StringSelection(hex);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(stringSelection, null);
+                setVisible(false);
+                frame.dispose();
             } catch (AWTException e) {
                 System.err.println(e.getMessage() + " выбор цвета");
                 System.exit(0);
@@ -49,7 +58,7 @@ public class Mouse extends JFrame {
         protected void paintComponent(Graphics g) {
             Image im = null;
             try {
-                im = ImageIO.read(new File("C:\\Users\\Axtane\\IdeaProjects\\color-dropper\\FullScreenshot.jpg"));
+                im = ImageIO.read(new File("FullScreenshot.bmp"));
             } catch (IOException e) {
                 System.out.println("Файл отсутствует");
             }
