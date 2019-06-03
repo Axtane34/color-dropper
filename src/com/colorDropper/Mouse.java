@@ -59,6 +59,12 @@ public class Mouse extends JFrame {
                     ig2.setPaint(colors);
                     ig2.fillRect(0,0,width,height);
                     ImageIO.write(bi, format, new File(String.valueOf(path)));
+
+                    Desktop desktop = null;
+                    if (Desktop.isDesktopSupported()) {
+                        desktop = Desktop.getDesktop();
+                    }
+                        desktop.open(new File("bmp"));
                 } catch (IOException ie) {
                     ie.printStackTrace();
                 }
