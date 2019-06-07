@@ -50,9 +50,9 @@ public class Mouse extends JFrame {
                 setVisible(false);
                 frame.dispose();
                 try {
-                    String format = "bmp";
+                    String format = "jpg";
                     String filePath = "#" + hex + "." + format;
-                    Path path = createFileWithDir("bmp",filePath);
+                    Path path = createFileWithDir("jpg",filePath);
                     int width = 200, height = 200;
                     BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
                     Graphics2D ig2 = bi.createGraphics();
@@ -64,7 +64,7 @@ public class Mouse extends JFrame {
                     if (Desktop.isDesktopSupported()) {
                         desktop = Desktop.getDesktop();
                     }
-                        desktop.open(new File("bmp"));
+                        desktop.open(new File("jpg"));
                 } catch (IOException ie) {
                     ie.printStackTrace();
                 }
